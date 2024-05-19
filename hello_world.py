@@ -7,7 +7,7 @@ def hello_world(username: str,rowId: str,server: str):
     print(f"Server: {server}")
     if username and rowId and server:
         print(f"Update {username} data from Server! 🤗")
-        response = requests.post(server,json={"username": username, "rowId": rowId})
+        response = requests.get(server+f'?igid={username}&id={rowId}')
         if response.status_code == 200:
             print(f"Data updated successfully! 🤗")
         else:
