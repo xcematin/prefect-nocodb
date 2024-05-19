@@ -1,10 +1,13 @@
 from prefect import flow
 import requests
 @flow(log_prints=True)
-def hello_world(name: str,rowId: str,server_url: str):
-    if name and rowId and server_url:
-        print(f"Update {name} data from Server! 🤗")
-        response = requests.post(server_url,json={"name": name, "rowId": rowId})
+def hello_world(username: str,rowId: str,server: str):
+    print(f"Hello {username}! Welcome to Scrumball-Bot-Instagram!")
+    print(f"RowId: {rowId}")
+    print(f"Server: {server}")
+    if username and rowId and server:
+        print(f"Update {username} data from Server! 🤗")
+        response = requests.post(server,json={"username": username, "rowId": rowId})
         if response.status_code == 200:
             print(f"Data updated successfully! 🤗")
         else:
